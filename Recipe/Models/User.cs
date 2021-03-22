@@ -11,7 +11,7 @@ namespace Recipe.Models
 
     public int UserId { get; set; }
     public string Name { get; set; }
-    public virtual ApplicationUser User { get; set; }
+    public virtual ApplicationUser AppUser { get; set; }
     public virtual ICollection<RecipeUser> JoinEntities { get; set; }
   }
 }

@@ -36,7 +36,7 @@ namespace Recipe
       services.Configure<IdentityOptions>(options =>
       {
         options.Password.RequireDigit = false;
-        options.Password.RequiredLength = 0;
+        options.Password.RequiredLength = 6;
         options.Password.RequireLowercase = false;
         options.Password.RequireNonAlphanumeric = false;
         options.Password.RequireUppercase = false;
@@ -49,6 +49,7 @@ namespace Recipe
       app.UseDeveloperExceptionPage();
 
       app.UseAuthentication(); 
+      app.UseAuthorization();
 
       app.UseRouting();
 
