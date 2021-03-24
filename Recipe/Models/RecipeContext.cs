@@ -5,9 +5,9 @@ namespace Recipe.Models
 {
   public class RecipeContext : IdentityDbContext<ApplicationUser>
   {
-    public virtual DbSet<Recipe> Recipes { get; set; }
+    public virtual DbSet<Food> Food { get; set; }
     public DbSet<User> Users { get; set; }
-    public DbSet<RecipeUser> RecipeUser { get; set; }
+    public DbSet<FoodUser> FoodUsers { get; set; }
 
     public RecipeContext(DbContextOptions options) : base(options) { }
 

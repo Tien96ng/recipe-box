@@ -1,0 +1,35 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Recipe.Models.User
+
+<h2>User Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This User does not belong to any Food Recipes</p>
+}
+else
+{
+  <h4>All Recipe(s) made: </h4>
+  <ul>
+  @foreach(var join in Model.JoinEntities)
+  {
+    <li>@join.Food.FoodName</li>
+    @using (Html.BeginForm("DeleteFood", "Users"))
+    {
+      @Html.Hidden("joinId", @join.FoodUserId)
+      <input type="submit" value="Delete"/>
+    }
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Add a Food", "AddFood", new { id = Model.UserId })</p>
+
+<p>@Html.ActionLink("Back to list", "Index")</p>
+<p>@Html.ActionLink("Edit User", "Edit", new { id = Model.UserId })</p>
+<p>@Html.ActionLink("Delete User", "Delete", new { id = Model.UserId })</p>

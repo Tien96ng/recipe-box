@@ -6,12 +6,12 @@ namespace Recipe.Models
   {
     public User()
     {
-      this.JoinEntities = new HashSet<RecipeUser> ();
+      this.JoinEntities = new HashSet<FoodUser> ();
     }
 
     public int UserId { get; set; }
     public string Name { get; set; }
     public virtual ApplicationUser AppUser { get; set; }
-    public virtual ICollection<RecipeUser> JoinEntities { get; set; }
+    public virtual ICollection<FoodUser> JoinEntities { get; set; }
   }
 }

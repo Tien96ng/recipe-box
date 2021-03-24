@@ -49,10 +49,10 @@ namespace Recipe
       app.UseDeveloperExceptionPage();
 
       app.UseAuthentication(); 
-      app.UseAuthorization();
+
 
       app.UseRouting();
-
+      app.UseAuthorization();
       app.UseEndpoints(routes =>
       {
         routes.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");

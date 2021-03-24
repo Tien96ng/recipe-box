@@ -1,0 +1,26 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Recipe.Models;
+@model IEnumerable<Recipe.Models.User>
+
+<h1>@User.Identity.Name Following Page:</h1>
+
+@if (Model.Any())
+{
+  <ul>
+    @foreach (User user in Model)
+    {
+      <li>@Html.ActionLink($"{user.Name}", "Details", new { id = user.UserId })</li>
+    }
+  </ul>
+} 
+else
+{
+  <h3>You aren't following anyone.</h3>
+}
+
+<p>@Html.ActionLink("Add new User", "Create")</p>
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

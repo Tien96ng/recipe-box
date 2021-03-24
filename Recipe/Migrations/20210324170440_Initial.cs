@@ -154,20 +154,20 @@ namespace Recipe.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Recipes",
+                name: "Food",
                 columns: table => new
                 {
-                    RecipeId = table.Column<int>(type: "int", nullable: false)
+                    FoodId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    RecipeName = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    FoodName = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
                     Ingredients = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
                     AppUserId = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Recipes", x => x.RecipeId);
+                    table.PrimaryKey("PK_Food", x => x.FoodId);
                     table.ForeignKey(
-                        name: "FK_Recipes_AspNetUsers_AppUserId",
+                        name: "FK_Food_AspNetUsers_AppUserId",
                         column: x => x.AppUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -195,25 +195,25 @@ namespace Recipe.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RecipeUser",
+                name: "FoodUsers",
                 columns: table => new
                 {
-                    RecipeUserId = table.Column<int>(type: "int", nullable: false)
+                    FoodUserId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    RecipeId = table.Column<int>(type: "int", nullable: false)
+                    FoodId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RecipeUser", x => x.RecipeUserId);
+                    table.PrimaryKey("PK_FoodUsers", x => x.FoodUserId);
                     table.ForeignKey(
-                        name: "FK_RecipeUser_Recipes_RecipeId",
-                        column: x => x.RecipeId,
-                        principalTable: "Recipes",
-                        principalColumn: "RecipeId",
+                        name: "FK_FoodUsers_Food_FoodId",
+                        column: x => x.FoodId,
+                        principalTable: "Food",
+                        principalColumn: "FoodId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_RecipeUser_Users_UserId",
+                        name: "FK_FoodUsers_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
@@ -258,18 +258,18 @@ namespace Recipe.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Recipes_AppUserId",
-                table: "Recipes",
+                name: "IX_Food_AppUserId",
+                table: "Food",
                 column: "AppUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RecipeUser_RecipeId",
-                table: "RecipeUser",
-                column: "RecipeId");
+                name: "IX_FoodUsers_FoodId",
+                table: "FoodUsers",
+                column: "FoodId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RecipeUser_UserId",
-                table: "RecipeUser",
+                name: "IX_FoodUsers_UserId",
+                table: "FoodUsers",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -296,13 +296,13 @@ namespace Recipe.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "RecipeUser");
+                name: "FoodUsers");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Recipes");
+                name: "Food");
 
             migrationBuilder.DropTable(
                 name: "Users");

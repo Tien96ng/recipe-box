@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Recipe.Models.Food
+
+<h2>Add a User</h2>
+
+<h4>Add a user to this recipe: @Html.DisplayFor(model => model.Ingredients)</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.FoodId)
+
+  @Html.Label("Select user")
+  @Html.DropDownList("UserId")
+
+  <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>

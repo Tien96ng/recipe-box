@@ -9,7 +9,7 @@ using Recipe.Models;
 namespace Recipe.Migrations
 {
     [DbContext(typeof(RecipeContext))]
-    [Migration("20210322214748_Initial")]
+    [Migration("20210324170440_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -211,47 +211,47 @@ namespace Recipe.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Recipe.Models.Recipe", b =>
+            modelBuilder.Entity("Recipe.Models.Food", b =>
                 {
-                    b.Property<int>("RecipeId")
+                    b.Property<int>("FoodId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<string>("AppUserId")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
+                    b.Property<string>("FoodName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<string>("Ingredients")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("RecipeName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("RecipeId");
+                    b.HasKey("FoodId");
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("Recipes");
+                    b.ToTable("Food");
                 });
 
-            modelBuilder.Entity("Recipe.Models.RecipeUser", b =>
+            modelBuilder.Entity("Recipe.Models.FoodUser", b =>
                 {
-                    b.Property<int>("RecipeUserId")
+                    b.Property<int>("FoodUserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("RecipeId")
+                    b.Property<int>("FoodId")
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("RecipeUserId");
+                    b.HasKey("FoodUserId");
 
-                    b.HasIndex("RecipeId");
+                    b.HasIndex("FoodId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("RecipeUser");
+                    b.ToTable("FoodUsers");
                 });
 
             modelBuilder.Entity("Recipe.Models.User", b =>
@@ -324,7 +324,7 @@ namespace Recipe.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Recipe.Models.Recipe", b =>
+            modelBuilder.Entity("Recipe.Models.Food", b =>
                 {
                     b.HasOne("Recipe.Models.ApplicationUser", "AppUser")
                         .WithMany()
@@ -333,11 +333,11 @@ namespace Recipe.Migrations
                     b.Navigation("AppUser");
                 });
 
-            modelBuilder.Entity("Recipe.Models.RecipeUser", b =>
+            modelBuilder.Entity("Recipe.Models.FoodUser", b =>
                 {
-                    b.HasOne("Recipe.Models.Recipe", "Recipe")
+                    b.HasOne("Recipe.Models.Food", "Food")
                         .WithMany("JoinEntities")
-                        .HasForeignKey("RecipeId")
+                        .HasForeignKey("FoodId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -347,7 +347,7 @@ namespace Recipe.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Recipe");
+                    b.Navigation("Food");
 
                     b.Navigation("User");
                 });
@@ -361,7 +361,7 @@ namespace Recipe.Migrations
                     b.Navigation("AppUser");
                 });
 
-            modelBuilder.Entity("Recipe.Models.Recipe", b =>
+            modelBuilder.Entity("Recipe.Models.Food", b =>
                 {
                     b.Navigation("JoinEntities");
                 });
